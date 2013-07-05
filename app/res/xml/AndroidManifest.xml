@@ -1,0 +1,14 @@
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+<!-- To be added within Application nde -->
+<service android:name="com.idfuze.prestatch.MyService">
+    <intent-filter>         
+        <action android:name="com.idfuze.prestatch.MyService"/> 
+    </intent-filter>     
+</service>
+
+<receiver android:name="com.red_folder.phonegap.plugin.backgroundservice.BootReceiver">
+    <intent-filter>     
+        <action android:name="android.intent.action.BOOT_COMPLETED"></action>   
+    </intent-filter> 
+</receiver>
