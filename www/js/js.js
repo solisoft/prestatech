@@ -1,6 +1,6 @@
-function onLoad() {
+$(function() {
   document.addEventListener("deviceready", onDeviceReady, false);
-}
+};
 
 function getCoords() {
   navigator.geolocation.getCurrentPosition(function(position) {

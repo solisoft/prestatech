@@ -13,6 +13,6 @@
         prestatech
     </description>
 
-    <preference name="orientation" value="portrait" />
-    <plugin name="BackgroundServicePlugin" value="com.red_folder.phonegap.plugin.backgroundservice.BackgroundServicePlugin"/>
+    <!--<preference name="orientation" value="portrait" />-->
+
 </widget>
