@@ -4,8 +4,10 @@
     <title>Device Properties Example</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova-2.7.0.js"></script>
+    <script type="text/javascript" src="js/backgroundService-2.0.0.js"></script>
+    <script type="text/javascript" src="js/myService-2.0.0.js"></script>
     <script type="text/javascript" charset="utf-8">
-
+    var myService = cordova.require('cordova/plugin/myService');
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -21,6 +23,10 @@
     // onSuccess Geolocation
     //
     function onSuccess(position) {
+      myService.startService(
+        function(r){alert("service is OK");}, 
+        function(e){alert("service is KO");}
+      );
         var element = document.getElementById('geolocation');
         element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
