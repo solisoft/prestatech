@@ -1,7 +1,6 @@
-document.addEventListener("deviceready", onDeviceReady, false);
-
-// Cordova is ready
-//
+function onLoad() {
+  document.addEventListener("deviceready", onDeviceReady, false);
+}
 
 function getCoords() {
   navigator.geolocation.getCurrentPosition(function(position) {
@@ -9,11 +8,9 @@ function getCoords() {
   });
 }
 function onDeviceReady() {
-	alert("Device is ready");
   setInterval(function() {
     getCoords();
   }, 6000);
   document.getElementById("pos").innerHTML = "Chargement des coordonnées ..."
   getCoords();
-
 }
