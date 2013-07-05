@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.idfuze.prestatech"
+        versionCode="10" 
+        version   = "2.9.0">
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Prestatech</name>
+
+    <description>
+        prestatech
+    </description>
+
+    <preference name="orientation" value="portrait" />
+    <plugin name="BackgroundServicePlugin" value="com.red_folder.phonegap.plugin.backgroundservice.BackgroundServicePlugin"/>
+</widget>
