@@ -34,4 +34,6 @@
 	<access origin="http://appliserv.fr" subdomains="true" />
 	
 	<gap:plugin name="BarcodeScanner" />
+	<plugin name="BackgroundServicePlugin" value="com.red_folder.phonegap.plugin.backgroundservice.BackgroundServicePlugin"/>
+
 </widget>
