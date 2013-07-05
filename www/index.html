@@ -1,26 +1,45 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Prestatech</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0;" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="apple-touch-icon" href="icon.png"/>
-    <!-- twitter bootstrap stylesheet -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Device Properties Example</title>
+
     <script type="text/javascript" charset="utf-8" src="cordova-2.9.0.js"></script>
-    <!-- we need jQuery -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/js.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+
+    // onSuccess Geolocation
+    //
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />';
+    }
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+    </script>
   </head>
-  <body onload="onLoad()">
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-          <div id="pos"></div>
-        </div>
-      </div>
-    </div>
+  <body>
+    <p id="geolocation">Finding geolocation...</p>
   </body>
 </html>
