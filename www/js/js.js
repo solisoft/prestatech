@@ -9,6 +9,7 @@ function getCoords() {
   });
 }
 function onDeviceReady() {
+	alert("Device is ready");
   setInterval(function() {
     getCoords();
   }, 6000);
