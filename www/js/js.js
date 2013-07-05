@@ -11,6 +11,8 @@ function getCoords() {
 function onDeviceReady() {
   setInterval(function() {
     getCoords();
-  }, 60000);
+  }, 6000);
+  document.getElementById("pos").innerHTML = "Chargement des coordonnées ..."
   getCoords();
+
 }
