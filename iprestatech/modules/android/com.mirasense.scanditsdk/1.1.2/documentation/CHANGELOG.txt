@@ -1,0 +1,33 @@
+
+Scandit SDK Changelog
+
+Changes in ScanditSDK Plugin for Titanium 1.1.2 (Android only) - June 18th 2013
+
+* Replaced old GUID in manifest file with a freshly generated GUID that is now identical
+to the GUID in iOS manifest file. The code base of the plugin is unchanged from the 1.1.1 release of the module. 
+
+Changes in ScanditSDK Plugin for Titanium 1.1.1 (Android & iPhone) - February 27th 2013
+
+* fixed critical bug in Android Titanium plugin 1.1.0 where all builds had the enterprise trial feature set which requires mandatory network access.
+
+Changes in ScanditSDK Plugin for Titanium 1.1.0 (Android & iPhone) - February 19th 2013
+
+* Important software update to work with orientation changes and to support barcode scanning in landscape mode. 
+
+IMPORTANT: this update requires a (small) change to the way you instantiate the Scandit SDK in your Titanium app. See the example for details. 
+
+* Fixed a bug in timodule.xml (Android) that prevented deployment on any device. Autofocus and flash are now also optional (no longer required). 
+
+* Fixed a bug where QR code scanning was only enabled by default on iPhone devices and not on Android devices. QR code scanning is now enabled by default on both platforms. 
+
+* Fixed a bug resulting from a typo in the method stopScanning. the method is now called stopScanning (and no longer stopScannning).  
+
+* Corrected toolbar offset.
+
+* Upgraded to Scandit SDK for Android 3.3.0. This includes software updates that address idiosyncrasies of various Android devices (Nexus 4, Nexus 7, …), support for GS1 QR codes, improved scanning performance on a number of Android devices
+
+* Upgraded to Scandit SDK for iPhone 2.2.7. This includes software updates to fix bug when switching from front to back camera by deallocating and reallocating ScanditBarcodePicker, to address a rare bug related to the OpenUDID implementation, to make 'beep' implementation less greedy, support for GS1 QR code symbology,  
+
+
+
+
