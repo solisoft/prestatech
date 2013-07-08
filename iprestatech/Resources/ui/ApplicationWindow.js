@@ -69,7 +69,16 @@ function ApplicationWindow() {
         url : '/HTML/index.html'
     });
     self.add(webView);
-
+	var button = Titanium.UI.createButton({
+		"width":200,
+		"height": 80,
+		"title": "start scanner"
+	});
+	
+	button.addEventListener('click', function() {
+		openScanner();
+	});
+	self.add(button);
     if (animationsOn) {
         setTimeout(function() {
             webView.animate(Ti.UI.createAnimation({

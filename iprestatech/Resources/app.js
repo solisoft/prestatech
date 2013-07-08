@@ -12,6 +12,12 @@
 var coords = "";
 var scanditsdk = require("com.mirasense.scanditsdk");
 var picker;
+
+var window = Titanium.UI.createWindow({  
+		title:'Scandit SDK',
+		navBarHidden:true
+});
+
 var openScanner = function() {
 	// Instantiate the Scandit SDK Barcode Picker view
 	picker = scanditsdk.createView({
@@ -30,12 +36,13 @@ var openScanner = function() {
 	// scanning is canceled.
 	picker.setSuccessCallback(function(e) {
 		alert("success (" + e.symbology + "): " + e.barcode);
+		closeScanner();
 	});
 	picker.setCancelCallback(function(e) {
 		closeScanner();
 	});
 
-	/*window.add(picker);
+	window.add(picker);
 	window.addEventListener('open', function(e) {
 		// Adjust to the current orientation.
 		// since window.orientation returns 'undefined' on ios devices 
@@ -52,16 +59,16 @@ var openScanner = function() {
 					   Ti.Platform.displayCaps.platformHeight);
 		picker.startScanning();		// startScanning() has to be called after the window is opened. 
 	});
-	window.open();*/
+	window.open();
 }
 
 // Stops the scanner, removes it from the window and closes the latter.
 var closeScanner = function() {
-	/*if (picker != null) {
+	if (picker != null) {
 		picker.stopScanning();
 		window.remove(picker);
 	}
-	window.close();*/
+	window.close();
 }
 
 //bootstrap and check dependencies
@@ -80,16 +87,8 @@ if (Ti.version < 1.8 ) {
 	//alert('Launching webservice');
 	var ApplicationWindow = require('ui/ApplicationWindow');
 	// create start scanner button
-	var button = Titanium.UI.createButton({
-		"width":200,
-		"height": 80,
-		"title": "start scanner"
-	});
-	
-	button.addEventListener('click', function() {
-		openScanner();
-	});
 	//ApplicationWindow.add(button);
+	
 	new ApplicationWindow().open();
 	//openScanner();
 }
