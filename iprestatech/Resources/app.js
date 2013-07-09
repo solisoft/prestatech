@@ -85,10 +85,10 @@ if (Ti.version < 1.8 ) {
 	Titanium.Android.startService(intent);
 	
 	//alert('Launching webservice');
-	var ApplicationWindow = require('ui/ApplicationWindow');
+	var SessionWindow = require('ui/SessionWindow');
 	// create start scanner button
 	//ApplicationWindow.add(button);
 	
-	new ApplicationWindow().open();
+	new SessionWindow().open();
 	//openScanner();
 }
