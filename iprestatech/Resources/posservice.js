@@ -11,7 +11,7 @@ Titanium.Geolocation.getCurrentPosition(function(e) {
   var latitude = e.coords.latitude;
   coords += "|"+longitude+"@"+latitude;
   if(Titanium.Network.online) {
-	 var url = "http://solisoft.net";
+	 var url = "http://somegec.appliserv.fr";
 	 var client = Ti.Network.createHTTPClient({
 	  onload : function(e) {
 	    Ti.API.info("Received text: " + this.responseText);

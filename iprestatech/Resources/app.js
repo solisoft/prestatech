@@ -10,6 +10,7 @@
  */
 
 var coords = "";
+var test = "olivier_the_boss"
 var scanditsdk = require("com.mirasense.scanditsdk");
 var picker;
 
