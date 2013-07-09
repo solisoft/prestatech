@@ -21,7 +21,8 @@ function SessionWindow() {
 		color: '#336699',
     top: 20,
 		width: 250, height: 60,
-    hintText: 'Identifiant'
+    hintText: 'Identifiant',
+    keyboardType: Titanium.UI.KEYBOARD_EMAIL
   });
 
   view.add(login);	
@@ -45,7 +46,33 @@ function SessionWindow() {
   });
 
   button.addEventListener('click', function() {
-  	
+  	var url = "http://somegec.appliserv.fr/api/auth.json?_method=POST";
+    var client = Ti.Network.createHTTPClient({
+      onload : function(e) {
+        Ti.API.info("Received text: " + this.responseText);
+        var json = JSON.parse(this.responseText);
+        if(json["ok"]) {
+          apikey = json["ok"];
+          var ApplicationWindow = require('ui/ApplicationWindow');
+          Ti.App.Properties.setString('apikey', apikey);
+          new ApplicationWindow().open();
+          
+        } else {
+          button.show();
+        }
+      },
+         // function called when an error occurs, including a timeout
+      onerror : function(e) {
+        Ti.API.debug(e.error);
+      },
+      timeout : 5000  // in milliseconds
+    });
+    // Prepare the connection.
+    client.open("POST", url);
+    // Send the request.
+    client.send("email="+login.getValue()+"&password="+pass.getValue());
+    button.hide();
+
   });
   view.add(button);
   

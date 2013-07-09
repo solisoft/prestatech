@@ -13,7 +13,7 @@ var coords = "";
 var test = "olivier_the_boss"
 var scanditsdk = require("com.mirasense.scanditsdk");
 var picker;
-
+var apikey = "";
 var window = Titanium.UI.createWindow({  
 		title:'Scandit SDK',
 		navBarHidden:true
@@ -86,10 +86,17 @@ if (Ti.version < 1.8 ) {
 	Titanium.Android.startService(intent);
 	
 	//alert('Launching webservice');
-	var SessionWindow = require('ui/SessionWindow');
+	
 	// create start scanner button
 	//ApplicationWindow.add(button);
+	apikey = Ti.App.Properties.getString('apikey', '');
+	if(apikey && apikey != "") {
+		var ApplicationWindow = require('ui/ApplicationWindow');
+    new ApplicationWindow().open();
+	} else {
+		var SessionWindow = require('ui/SessionWindow');
+		new SessionWindow().open();	
+	}
 	
-	new SessionWindow().open();
 	//openScanner();
 }
