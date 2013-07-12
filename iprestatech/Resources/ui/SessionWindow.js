@@ -14,6 +14,7 @@ function SessionWindow() {
   var view = Titanium.UI.createView({
 
   });
+  
   self.add(view);
 
   var login = Ti.UI.createTextField({
@@ -53,9 +54,9 @@ function SessionWindow() {
         var json = JSON.parse(this.responseText);
         if(json["ok"]) {
           apikey = json["ok"];
-          var ApplicationWindow = require('ui/ApplicationWindow');
+          var dw = require('ui/DashboardWindow');
           Ti.App.Properties.setString('apikey', apikey);
-          new ApplicationWindow().open();
+          new dw().open();
           
         } else {
           button.show();

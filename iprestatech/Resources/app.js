@@ -1,22 +1,18 @@
-/*
- * HTML Application Template:
- * A basic starting point for your application.  Mostly a blank canvas with a web view.
- * 
- * In app.js, we generally take care of a few things:
- * - Bootstrap the application with any data we need
- * - Check for dependencies like device type, platform version or network connection
- * - Require and open our top-level UI component
- *  
- */
-
-var coords = "";
-var test = "olivier_the_boss"
+var coords = [];
 var scanditsdk = require("com.mirasense.scanditsdk");
 var picker;
 var apikey = "";
+
+var _ = require('underscore')._;
+
 var window = Titanium.UI.createWindow({  
-		title:'Scandit SDK',
+		title:'Scanner un code mission',
 		navBarHidden:true
+});
+
+var mainWindow = Titanium.UI.createWindow({  
+    title:'iPrestatech',
+    exitonclose: true
 });
 
 var openScanner = function() {
@@ -76,27 +72,15 @@ var closeScanner = function() {
 if (Ti.version < 1.8 ) {
 	alert('Sorry - this application template requires Titanium Mobile SDK 1.8 or later'); 
 } else {
-	//require and open top level UI component
-	Titanium.API.info('Launching webservice');
-	var SECONDS = 60; // every 10 seconds
-	var intent = Titanium.Android.createServiceIntent({
-  		url: 'posservice.js'
-	});
-	intent.putExtra('interval', SECONDS * 1000); // Needs to be milliseconds
-	Titanium.Android.startService(intent);
 	
-	//alert('Launching webservice');
-	
-	// create start scanner button
-	//ApplicationWindow.add(button);
+
 	apikey = Ti.App.Properties.getString('apikey', '');
 	if(apikey && apikey != "") {
-		var ApplicationWindow = require('ui/ApplicationWindow');
-    new ApplicationWindow().open();
+		var dw = require('ui/DashboardWindow');
+    new dw().open();
 	} else {
-		var SessionWindow = require('ui/SessionWindow');
-		new SessionWindow().open();	
+		var dw = require('ui/SessionWindow');
+		new dw().open();
 	}
-	
-	//openScanner();
+
 }
