@@ -1,10 +1,10 @@
 
-function DashboardWindow() {    
+function MessageWindow() {    
   var osname = Ti.Platform.osname;
   var view = Ti.UI.createTableView({});
 
   var refreshData = function() {
-    var url = "http://somegec.appliserv.fr/api/dashboard.json?api="+Ti.App.Properties.getString('apikey');
+    var url = "http://somegec.appliserv.fr/api/messages.json?api="+Ti.App.Properties.getString('apikey');
     var client = Ti.Network.createHTTPClient({
       onload : function(e) {
         //alert(this.responseText);
@@ -34,16 +34,33 @@ function DashboardWindow() {
           var date = Ti.UI.createLabel({
             color:'#000',
             font:{fontFamily:'Arial', fontSize: 14},
-            text:moment(e.date).calendar(),
+            text: moment(e.date).format("LLL"),
             left:10, top: 50, right: 10,
             width: Ti.UI.SIZE, height: 30,
             textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
           });
-          row.add(label);
+          var nom = Ti.UI.createLabel({
+            color:'#000',
+            font:{fontFamily:'Arial', fontSize: 16, fontWeight:'bold'},
+            text:e.nom,
+            left:10, top: 10, right: 10,
+            width: Ti.UI.SIZE
+          });
+          var commentaire = Ti.UI.createLabel({
+            color:'#000',
+            font:{fontFamily:'Arial', fontSize: 14},
+            text:e.commentaire,
+            left:10, top: 80, right: 10,
+            width: Ti.UI.SIZE
+          });
+
+          //row.add(label);
           row.add(espace);
           row.add(date);
+          row.add(nom);
+          row.add(commentaire);          
+
           row.addEventListener("click", function(e) {
-            //alert("You're talking to me? (" + e+")");
             var mission = require('ui/MissionWindow');
             new mission(this.rowIndex).open();
           })
@@ -63,8 +80,25 @@ function DashboardWindow() {
   // Create our main window
   var win = Ti.UI.createWindow({
     backgroundColor: 'white',
-    fullscreen: false
-    
+    exitOnClose: true,
+    fullscreen: false,
+    activity : {
+      onCreateOptionsMenu : function(e) {
+        var menu = e.menu;
+        var m1 = menu.add({ title : 'Rafraîchir les données' });
+        m1.setIcon(Titanium.Android.R.drawable.ic_menu_refresh);
+        m1.addEventListener('click', function(e) {
+          refreshData();
+          menu.close();
+        });  
+        var m2 = menu.add({ title : 'Liste des missions' });
+        m2.addEventListener('click', function(e) {
+          var dw = require('ui/DashboardWindow');
+          new dw().open();
+          menu.close();
+        });            
+      }
+    }
   });  
   
   win.add(view);
@@ -80,9 +114,13 @@ function DashboardWindow() {
   service = Titanium.Android.createService(intent);
   service.start();  
 
-  
+  win.addEventListener("close", function() {
+    Ti.Geolocation.removeEventListener('location', function() {});
+    service.stop();
+  });
+
   return win;
 }
 
 //make constructor function the public component interface
-module.exports = DashboardWindow;
+module.exports = MessageWindow;

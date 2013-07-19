@@ -22,19 +22,9 @@ function MissionWindow(missionID) {
 
   // Create our main window
   var win = Ti.UI.createWindow({
-    backgroundColor: 'blue',
-    fullscreen: false,
-    activity : {
-      onCreateOptionsMenu : function(e) {
-        var menu = e.menu;
-        var m1 = menu.add({ title : 'Rafraîchir les données' });
-        m1.setIcon(Titanium.Android.R.drawable.ic_menu_refresh);
-        m1.addEventListener('click', function(e) {
-          refreshData();
-          menu.close();
-        });
-      }
-    }
+    backgroundColor: 'white',
+    fullscreen: false
+    
   });  
   
   view = Ti.UI.createView();
