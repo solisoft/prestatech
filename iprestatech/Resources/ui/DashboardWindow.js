@@ -62,8 +62,9 @@ function DashboardWindow() {
   }
   // Create our main window
   var win = Ti.UI.createWindow({
+    title: 'Liste des missions',
     backgroundColor: 'white',
-    fullscreen: false
+    modal: true
     
   });  
   
@@ -72,15 +73,19 @@ function DashboardWindow() {
     refreshData();
   }); 
 
+  var activity = win.activity;
 
-  var service;
-  var intent = Titanium.Android.createServiceIntent({
-      url: 'posservice.js'
-  });
-  service = Titanium.Android.createService(intent);
-  service.start();  
+  activity.onCreateOptionsMenu = function(e){
+    var menu = e.menu;
+    var menuItem = menu.add({ 
+      title: "Item 1", 
+      showAsAction: Ti.Android.SHOW_AS_ACTION_IF_ROOM
+    });
+    menuItem.addEventListener("click", function(e) {
+      Ti.API.debug("I was clicked");
+    });
+  };
 
-  
   return win;
 }
 

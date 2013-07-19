@@ -22,9 +22,9 @@ function MissionWindow(missionID) {
 
   // Create our main window
   var win = Ti.UI.createWindow({
+    title: 'Détail de la mission',
     backgroundColor: 'white',
-    fullscreen: false
-    
+    fullscreen: false    
   });  
   
   view = Ti.UI.createView();

@@ -79,9 +79,10 @@ function MessageWindow() {
   }
   // Create our main window
   var win = Ti.UI.createWindow({
+    title: 'Liste des messages',
     backgroundColor: 'white',
     exitOnClose: true,
-    fullscreen: false,
+    modal: true,
     activity : {
       onCreateOptionsMenu : function(e) {
         var menu = e.menu;
