@@ -17,9 +17,18 @@ function MissionWindow(missionID) {
       	var label = Ti.UI.createLabel({ text: "Information Client" });
       	view.add(label);
       	
-      	label = Ti.UI.createLabel({ text: json.nom, color: "#000000" });
+      	label = Ti.UI.createLabel({ text: json.coords, color: "#000000" });
         view.add(label);
         
+        label = Ti.UI.createLabel({ text: "Lieu prestation" });
+      	view.add(label);
+      	
+      	label = Ti.UI.createLabel({ text: json.lieu });
+        view.add(label);
+        
+        label = Ti.UI.createLabel({ text: "Etat : " + json.etat  });
+      	view.add(label);
+      	
         label = Ti.UI.createLabel({ text: "Liste des suivis" });
         view.add(label);
         
