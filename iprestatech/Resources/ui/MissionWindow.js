@@ -30,7 +30,7 @@ function MissionWindow(missionID) {
       	
       	var button1 = Titanium.UI.createButton({ title: 'Prise en charge' });
         button1.addEventListener('click',function(e) {
-          alert(missionID)
+          //alert(missionID)
           var nw = require('ui/suiviWindow');
           new nw(missionID, 1).open();
         });
