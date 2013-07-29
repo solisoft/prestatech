@@ -14,41 +14,43 @@ function MissionWindow(missionID) {
       	var json = JSON.parse(this.responseText);
       	
       	// Ici ajouter les infos dynamiquement
-      	var label = Ti.UI.createLabel({ title: "Information Client" });
-      	win.add(label);
-      	label = Ti.UI.createLabel({ title: json.nom, color: "#000000" });
-        win.add(label);
+      	var label = Ti.UI.createLabel({ text: "Information Client" });
+      	view.add(label);
+      	
+      	label = Ti.UI.createLabel({ text: json.nom, color: "#000000" });
+        view.add(label);
         
-        label = Ti.UI.createLabel({ title: "Liste des suivis" });
-        win.add(label);
+        label = Ti.UI.createLabel({ text: "Liste des suivis" });
+        view.add(label);
         
         _.each(json.suivis, function(suivi) {
-          label = Ti.UI.createLabel({ title: suivi });
-          win.add(label);
+          label = Ti.UI.createLabel({ text: suivi });
+          view.add(label);
         });
       	
       	var button1 = Titanium.UI.createButton({ title: 'Prise en charge' });
         button1.addEventListener('click',function(e) {
+          alert(missionID)
           var nw = require('ui/suiviWindow');
-          new nw().open(missionID, 1);
+          new nw(missionID, 1).open();
         });
         view.add(button1);
         var button2 = Titanium.UI.createButton({ title: 'Validation et signature abonné' });
         button2.addEventListener('click',function(e) {
           var nw = require('ui/suiviWindow');
-          new nw().open(missionID, 2);
+          new nw(missionID, 2).open();
         });
         view.add(button2);
         var button3 = Titanium.UI.createButton({ title: 'Valider et clore la mission' });
         button3.addEventListener('click',function(e) {
           var nw = require('ui/suiviWindow');
-          new nw().open(missionID, 3);
+          new nw(missionID, 3).open();
         });
         view.add(button3);
         var button4 = Titanium.UI.createButton({ title: 'Ajouter un message' });
         button4.addEventListener('click',function(e) {
           var nw = require('ui/suiviWindow');
-          new nw().open(missionID, 4);
+          new nw(missionID, 4).open();
         });
         view.add(button4);
 

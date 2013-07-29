@@ -153,11 +153,12 @@ function MessageWindow() {
           new nw().open();
           menu.close();
         });
-        var m2 = menu.add({ title : 'Scanner QrCode' });
-        m2.addEventListener('click', function(e) {
+        var m3 = menu.add({ title : 'Scanner QrCode' });
+        m3.addEventListener('click', function(e) {
           openScanner();
           menu.close();
         });            
+         
                     
         
       }

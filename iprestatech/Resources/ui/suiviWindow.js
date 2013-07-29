@@ -7,11 +7,10 @@ function suiviWindow(missionID, suiviID) {
   var win = Ti.UI.createWindow({
     title: 'Détail de la mission',
     backgroundColor: 'white',
-    fullscreen: false,
-    layout: 'vertical'    
+    fullscreen: false 
   });  
   
-  view = Ti.UI.createView();
+  view = Ti.UI.createView({ layout: 'vertical'});
   
   // Adrresse
   var label = Ti.UI.createLabel({ text: "Commentaire : " });
