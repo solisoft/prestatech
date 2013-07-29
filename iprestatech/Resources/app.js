@@ -3,6 +3,12 @@ var scanditsdk = require("com.mirasense.scanditsdk");
 var picker;
 var apikey = "";
 
+var type_accompagnements;
+var type_prestations;
+var list_prestations;
+var mode_reglements;
+
+
 var _ = require('underscore')._;
 var moment = require('moment.min');
 
@@ -79,7 +85,9 @@ var openScanner = function() {
 	// Set callback functions for when scanning succeedes and for when the 
 	// scanning is canceled.
 	picker.setSuccessCallback(function(e) {
-		alert("success (" + e.symbology + "): " + e.barcode);
+		//alert("success (" + e.symbology + "): " + e.barcode);
+		var mission = require('ui/MissionWindow');
+    new mission(e.barcode).open();
 		closeScanner();
 	});
 	picker.setCancelCallback(function(e) {

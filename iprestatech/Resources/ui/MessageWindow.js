@@ -76,12 +76,61 @@ function MessageWindow() {
     });
     client.open("GET", url);    
     client.send();
+    
+    var url2 = "http://somegec.appliserv.fr/api/type_accompagnements.json?api="+Ti.App.Properties.getString('apikey');
+    //alert(url);
+    var client2 = Ti.Network.createHTTPClient({
+      onload : function(e) {
+        var type_accompagnements = JSON.parse(this.responseText);
+      },
+      onerror : function(e) {
+      },
+      timeout : 5000  // in milliseconds
+    });
+    client2.open("GET", url2);    
+    client2.send();
+    var url3 = "http://somegec.appliserv.fr/api/type_prestations.json?api="+Ti.App.Properties.getString('apikey');
+    //alert(url);
+    var client3 = Ti.Network.createHTTPClient({
+      onload : function(e) {
+        var type_prestations = JSON.parse(this.responseText);
+      },
+      onerror : function(e) {
+      },
+      timeout : 5000  // in milliseconds
+    });
+    client3.open("GET", url3);    
+    client3.send();  
+    var url4 = "http://somegec.appliserv.fr/api/list_prestations.json?api="+Ti.App.Properties.getString('apikey');
+    //alert(url);
+    var client4 = Ti.Network.createHTTPClient({
+      onload : function(e) {
+        var list_prestations = JSON.parse(this.responseText);
+      },
+      onerror : function(e) {
+      },
+      timeout : 5000  // in milliseconds
+    });
+    client4.open("GET", url4);    
+    client4.send();  
+    var url5 = "http://somegec.appliserv.fr/api/mode_reglements.json?api="+Ti.App.Properties.getString('apikey');
+    //alert(url);
+    var client5 = Ti.Network.createHTTPClient({
+      onload : function(e) {
+        var mode_reglements = JSON.parse(this.responseText);
+      },
+      onerror : function(e) {
+      },
+      timeout : 5000  // in milliseconds
+    });
+    client5.open("GET", url5);    
+    client5.send();  
   }
   // Create our main window
   var win = Ti.UI.createWindow({
     title: 'Liste des messages',
     backgroundColor: 'white',
-    exitOnClose: true,
+    exitOnClose: false,
     modal: true,
     activity : {
       onCreateOptionsMenu : function(e) {
@@ -98,6 +147,19 @@ function MessageWindow() {
           new dw().open();
           menu.close();
         });            
+        var m2 = menu.add({ title : 'Créer mission anticipée' });
+        m2.addEventListener('click', function(e) {
+          var nw = require('ui/NewMissionAnticipeeWindow');
+          new nw().open();
+          menu.close();
+        });
+        var m2 = menu.add({ title : 'Scanner QrCode' });
+        m2.addEventListener('click', function(e) {
+          openScanner();
+          menu.close();
+        });            
+                    
+        
       }
     }
   });  
@@ -116,8 +178,8 @@ function MessageWindow() {
   service.start();  
 
   win.addEventListener("close", function() {
-    Ti.Geolocation.removeEventListener('location', function() {});
-    service.stop();
+    //Ti.Geolocation.removeEventListener('location', function() {});
+    //service.stop();
   });
 
   return win;
