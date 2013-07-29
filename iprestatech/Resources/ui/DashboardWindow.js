@@ -78,11 +78,11 @@ function DashboardWindow() {
   activity.onCreateOptionsMenu = function(e){
     var menu = e.menu;
     var menuItem = menu.add({ 
-      title: "Item 1", 
-      showAsAction: Ti.Android.SHOW_AS_ACTION_IF_ROOM
+      title: "Rafraîchir les données"
     });
     menuItem.addEventListener("click", function(e) {
-      Ti.API.debug("I was clicked");
+      refreshData();
+      menu.close();
     });
   };
 
