@@ -26,7 +26,7 @@ function DashboardWindow() {
           var espace = Ti.UI.createLabel({
             color:'#000',
             font:{fontFamily:'Arial', fontSize: 14},
-            text:e.espace,
+            text:e.espace + " / " + e.prestation,
             left:10, top: 30,
             width: Ti.UI.SIZE, height: 30, right: 10,
             textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT

@@ -13,27 +13,35 @@ function MissionWindow(missionID) {
       onload : function(e) {
       	var json = JSON.parse(this.responseText);
       	
-      	// Ici ajouter les infos dynamiquement
-      	var label = Ti.UI.createLabel({ text: "Information Client" });
+      	var label = Ti.UI.createLabel({ 
+      		text: json.titre, 
+      		color: '#900',
+  			font: { fontSize:16 },
+      		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+      		width: Ti.UI.SIZE
+      	});
       	view.add(label);
       	
-      	label = Ti.UI.createLabel({ text: json.coords, color: "#000000" });
+      	var label = Ti.UI.createLabel({ text: "Information Client", color: "#000000",textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT });
+      	view.add(label);
+      	
+      	label = Ti.UI.createLabel({ text: json.coords });
         view.add(label);
         
-        label = Ti.UI.createLabel({ text: "Lieu prestation" });
+        label = Ti.UI.createLabel({ text: "Lieu prestation", color: "#000000" });
       	view.add(label);
       	
       	label = Ti.UI.createLabel({ text: json.lieu });
         view.add(label);
         
-        label = Ti.UI.createLabel({ text: "Etat : " + json.etat  });
+        label = Ti.UI.createLabel({ text: "Etat : " + json.etat, color: "#000000"  });
       	view.add(label);
       	
-        label = Ti.UI.createLabel({ text: "Liste des suivis" });
+        label = Ti.UI.createLabel({ text: "Liste des suivis",font: { fontSize:16 }, color: "#000000",textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT });
         view.add(label);
         
         _.each(json.suivis, function(suivi) {
-          label = Ti.UI.createLabel({ text: suivi });
+          label = Ti.UI.createLabel({ text: suivi, textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT, left: "10px" });
           view.add(label);
         });
       	
