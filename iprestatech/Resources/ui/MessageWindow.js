@@ -170,6 +170,13 @@ function MessageWindow() {
           openScanner();
           menu.close();
         });            
+        var m5 = menu.add({title: "Calendrier"});
+        m5.addEventListener('click', function(e) {
+          var dw = require('ui/CalendarWindow');
+          new dw().open();
+          menu.close();
+        });            
+        
         var m4 = menu.add({title: "Déconnexion"});
         m4.addEventListener('click', function(e) {
           var dw = require('ui/SessionWindow');
@@ -187,6 +194,9 @@ function MessageWindow() {
     refreshData();
   }); 
 
+  win.addEventListener('android:back', function (e) {
+    // Do nothing ;)
+  });
 
   var service;
   var intent = Titanium.Android.createServiceIntent({

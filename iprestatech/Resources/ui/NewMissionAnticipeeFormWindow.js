@@ -134,9 +134,11 @@ function NewMissionAnticipeeFormWindow(userID) {
     //alert(url);
     var client = Ti.Network.createHTTPClient({
       onload : function(e) {
+        alert("Mission Anticipée créée avec succès !");
         win.close();
-        var mission = require('ui/MissionWindow');
-        new mission(this.responseText).open();
+
+        //var mission = require('ui/MissionWindow');
+        //new mission(this.responseText).open();
       },
       onerror : function(e) {
         alert("Erreur !");

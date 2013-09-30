@@ -73,6 +73,7 @@ function MissionWindow(missionID) {
 
       },
       onerror : function(e) {
+        alert("Erreur en chargeant l'url " + url);
       },
       timeout : 5000  // in milliseconds
     });
