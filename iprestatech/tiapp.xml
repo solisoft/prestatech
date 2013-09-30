@@ -33,9 +33,12 @@
             <service type="interval" url="posservice.js"/>
         </services>
         <tool-api-level>10</tool-api-level>
-    <manifest android:installLocation="auto" android:versionCode="11" android:versionName="1.1">
-        <supports-screens android:anyDensity="false" android:largeScreens="false" android:normalScreens="true" android:smallScreens="false"/>
-    </manifest>
+        <manifest android:installLocation="auto"
+            android:versionCode="11" android:versionName="1.1">
+            <supports-screens android:anyDensity="false"
+                android:largeScreens="false"
+                android:normalScreens="true" android:smallScreens="false"/>
+        </manifest>
     </android>
     <mobileweb>
         <precache/>

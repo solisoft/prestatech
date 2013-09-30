@@ -60,15 +60,16 @@ Ti.Geolocation.addEventListener('location', function(e) {
   var latitude = e.coords.latitude;
   var time= +new Date();
   coords.push(time+"@"+longitude+"@"+latitude);
+  //alert(apikey);
   if(Ti.Network.online && apikey != "") {
-	 	var url = "http://somegec.appliserv.fr/api/update_position.json?_method=POST";
-	 	var client = Ti.Network.createHTTPClient({
-	  	onload : function(e) {
-	    	coords = [];	    
-	  	},
-	  	onerror : function(e) {
-	  	},
-	  	timeout : 5000  // in milliseconds
+		var url = "http://somegec.appliserv.fr/api/update_position.json?_method=POST";
+		var client = Ti.Network.createHTTPClient({
+		onload : function(e) {
+		coords = [];	    
+		},
+		onerror : function(e) {
+		},
+		timeout : 5000  // in milliseconds
 		});
 		client.open("POST", url);
 		client.send("api="+apikey+"&data="+coords.join("|"));

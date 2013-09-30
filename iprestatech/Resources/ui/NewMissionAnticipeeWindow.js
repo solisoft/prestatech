@@ -32,15 +32,19 @@ function NewMissionAnticipeeWindow() {
   
   
   search.addEventListener("return", function() {
+    clients.text = "Recherche en cours ... ";
     var url = "http://somegec.appliserv.fr/api/search_clients.json?search="+search.getValue()+"&api="+Ti.App.Properties.getString('apikey');
     //alert(url);
     var client = Ti.Network.createHTTPClient({
       onload : function(e) {
+        win.close();
+        clients.text = "";
         var json = JSON.parse(this.responseText);   
         var sc = require('ui/searchClientWindow');
         new sc(json).open();
       },
       onerror : function(e) {
+        label.text = "Désolé, une erreur s'est produite !"
       },
       timeout : 5000  // in milliseconds
     });

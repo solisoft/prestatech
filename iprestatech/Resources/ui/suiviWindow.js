@@ -39,7 +39,7 @@ function suiviWindow(missionID, suiviID) {
     client.open("POST", url);    
     client.send({ 
       mission: missionID,
-      suivi: suiviID, 
+      
       comment: comment.getValue(),  
       });  
   });

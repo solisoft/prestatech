@@ -81,7 +81,7 @@ function MessageWindow() {
     //alert(url);
     var client2 = Ti.Network.createHTTPClient({
       onload : function(e) {
-        var type_accompagnements = JSON.parse(this.responseText);
+        type_accompagnements = JSON.parse(this.responseText);
       },
       onerror : function(e) {
       },
@@ -93,7 +93,7 @@ function MessageWindow() {
     //alert(url);
     var client3 = Ti.Network.createHTTPClient({
       onload : function(e) {
-        var type_prestations = JSON.parse(this.responseText);
+        type_prestations = JSON.parse(this.responseText);
       },
       onerror : function(e) {
       },
@@ -105,7 +105,7 @@ function MessageWindow() {
     //alert(url);
     var client4 = Ti.Network.createHTTPClient({
       onload : function(e) {
-        var list_prestations = JSON.parse(this.responseText);
+        list_prestations = JSON.parse(this.responseText);
       },
       onerror : function(e) {
       },
@@ -117,7 +117,7 @@ function MessageWindow() {
     //alert(url);
     var client5 = Ti.Network.createHTTPClient({
       onload : function(e) {
-        var mode_reglements = JSON.parse(this.responseText);
+        mode_reglements = JSON.parse(this.responseText);
       },
       onerror : function(e) {
       },
@@ -125,6 +125,18 @@ function MessageWindow() {
     });
     client5.open("GET", url5);    
     client5.send();  
+    var url6 = "http://somegec.appliserv.fr/api/list_espaces.json?api="+Ti.App.Properties.getString('apikey');
+    //alert(url);
+    var client6 = Ti.Network.createHTTPClient({
+      onload : function(e) {
+        list_espaces = JSON.parse(this.responseText);
+      },
+      onerror : function(e) {
+      },
+      timeout : 5000  // in milliseconds
+    });
+    client6.open("GET", url6);
+    client6.send();
   }
   // Create our main window
   var win = Ti.UI.createWindow({
@@ -158,7 +170,12 @@ function MessageWindow() {
           openScanner();
           menu.close();
         });            
-         
+        var m4 = menu.add({title: "Déconnexion"});
+        m4.addEventListener('click', function(e) {
+          var dw = require('ui/SessionWindow');
+          new dw().open();
+          menu.close();
+        });            
                     
         
       }

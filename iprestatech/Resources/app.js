@@ -7,6 +7,7 @@ var type_accompagnements;
 var type_prestations;
 var list_prestations;
 var mode_reglements;
+var list_espaces;
 
 
 var _ = require('underscore')._;

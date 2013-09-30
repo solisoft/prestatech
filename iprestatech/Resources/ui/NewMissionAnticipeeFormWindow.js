@@ -26,17 +26,31 @@ function NewMissionAnticipeeFormWindow(userID) {
   view.add(label);
   label = Ti.UI.createLabel({ color: '#000000', text: user_nom });
   view.add(label);
- 
+  
+  label = Ti.UI.createLabel({ text: "Espace : " });
+  view.add(label);
+  var picker_list_espaces = Ti.UI.createPicker({});
+  data = [];
+  _.each(list_espaces, function(e, i) {
+
+    data[i] = Ti.UI.createPickerRow({title: e[1] });    
+  });
+  if(data.length > 0) picker_list_espaces.add(data);
+  picker_list_espaces.selectionIndicator = true;
+  view.add(picker_list_espaces);
+
+  
+
   label = Ti.UI.createLabel({ text: "Prestation : " });
   view.add(label);
   
   var picker_list_prestations = Ti.UI.createPicker({});
   data = [];
+  //alert(list_prestations.length);
+  
   _.each(list_prestations, function(e, i) {
-    data[i]=Ti.UI.createPickerRow({title: e[1] });
-    
+    data[i] = Ti.UI.createPickerRow({title: e[1] });    
   });
-  data = [];
   if(data.length > 0) picker_list_prestations.add(data);
   picker_list_prestations.selectionIndicator = true;
   view.add(picker_list_prestations);
@@ -90,8 +104,9 @@ function NewMissionAnticipeeFormWindow(userID) {
   view.add(label);
   var picker_prestations = Ti.UI.createPicker({});
   data = [];
+  //alert(type_prestations.length);
   _.each(type_prestations, function(e, i) {
-    data[i]=Ti.UI.createPickerRow({title: e[1] });
+    data[i] = Ti.UI.createPickerRow({title: e[1] });
   });
   if(data.length > 0)  picker_prestations.add(data);
   picker_prestations.selectionIndicator = true;
@@ -120,8 +135,11 @@ function NewMissionAnticipeeFormWindow(userID) {
     var client = Ti.Network.createHTTPClient({
       onload : function(e) {
         win.close();
+        var mission = require('ui/MissionWindow');
+        new mission(this.responseText).open();
       },
       onerror : function(e) {
+        alert("Erreur !");
       },
       timeout : 5000  // in milliseconds
     });
@@ -133,10 +151,12 @@ function NewMissionAnticipeeFormWindow(userID) {
       cp: cp.getValue(),
       ville: ville.getValue(),
       commentaires: commentaires.getValue(),
-      mode_reglement: picker_mode_reglements.getValue(),  
-      type_prestation: picker_prestations.getValue(),
-      date_real: date_real.getValue()
-      });  
+      mode_reglement: picker_mode_reglements.getSelectedRow(0).title,  
+      type_prestation: picker_prestations.getSelectedRow(0).title,
+      list_prestation: picker_list_prestations.getSelectedRow(0).title,
+      date_real: date_real.getValue(),
+      espace: picker_list_espaces.getSelectedRow(0).title
+    });  
   });
   view.add(button);
   scrollView.add(view);

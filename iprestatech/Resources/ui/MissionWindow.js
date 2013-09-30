@@ -60,8 +60,8 @@ function MissionWindow(missionID) {
         view.add(button2);
         var button3 = Titanium.UI.createButton({ title: 'Valider et clore la mission' });
         button3.addEventListener('click',function(e) {
-          var nw = require('ui/suiviWindow');
-          new nw(missionID, 3).open();
+          var nw = require('ui/ClotureWindow');
+          new nw(missionID).open();
         });
         view.add(button3);
         var button4 = Titanium.UI.createButton({ title: 'Ajouter un message' });

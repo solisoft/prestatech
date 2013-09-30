@@ -33,6 +33,7 @@ function searchClientWindow(json) {
       row.add(label);
       row.addEventListener("click", function(e) {
         //alert("You're talking to me? (" + this.rowIndex +")");
+        win.close();
         var mission = require('ui/NewMissionAnticipeeFormWindow');
         new mission(this.rowIndex).open();
         win.close();
