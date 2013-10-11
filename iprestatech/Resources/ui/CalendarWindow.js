@@ -10,7 +10,7 @@ function CalendarWindow() {
   });
 
   var view = Titanium.UI.createWebView({
-    url: "http://somegec.appliserv.fr/api/planning?apikey="+Ti.App.Properties.getString('apikey'),
+    url: "http://somegec.appliserv.fr/api/planning?api="+Ti.App.Properties.getString('apikey'),
     height: Ti.UI.FILL,
     width: Ti.UI.HEIGHT
   });
