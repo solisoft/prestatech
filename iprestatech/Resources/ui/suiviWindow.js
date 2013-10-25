@@ -13,7 +13,7 @@ function suiviWindow(missionID, suiviID) {
   view = Ti.UI.createScrollView({ layout: 'vertical'});
   
   var web = Titanium.UI.createWebView({
-    url: "http://somegec.appliserv.fr/api/signature?api="+Ti.App.Properties.getString('apikey')+"id="+missionID,
+    url: "http://somegec.appliserv.fr/api/signature?api="+Ti.App.Properties.getString('apikey')+"&id="+missionID,
     height: 300,
     width: Ti.UI.FILL
   });

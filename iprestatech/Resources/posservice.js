@@ -7,7 +7,7 @@ Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
 
 var gpsProvider = Ti.Geolocation.Android.createLocationProvider({
     name: Ti.Geolocation.PROVIDER_GPS,
-    minUpdateTime: 60, 
+    minUpdateTime: 60 * 30, 
     minUpdateDistance: 0
 });
 Ti.Geolocation.Android.addLocationProvider(gpsProvider);
