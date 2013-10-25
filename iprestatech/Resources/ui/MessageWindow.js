@@ -202,6 +202,7 @@ function MessageWindow() {
   var intent = Titanium.Android.createServiceIntent({
       url: 'posservice.js'
   });
+  intent.putExtra('interval', 60000 * 30);
   service = Titanium.Android.createService(intent);
   service.start();  
 
