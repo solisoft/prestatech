@@ -14,7 +14,7 @@ function suiviWindow(missionID, suiviID) {
   
   var web = Titanium.UI.createWebView({
     url: "http://somegec.appliserv.fr/api/signature?api="+Ti.App.Properties.getString('apikey')+"&id="+missionID,
-    height: 300,
+    height: 400,
     width: Ti.UI.FILL
   });
   if(suiviID == 2) view.add(web);
