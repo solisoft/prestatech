@@ -10,11 +10,11 @@ function suiviWindow(missionID, suiviID) {
     fullscreen: false 
   });  
   
-  view = Ti.UI.createScrollView({ layout: 'vertical'});
+  view = Ti.UI.createView({ layout: 'vertical'});
   
   var web = Titanium.UI.createWebView({
     url: "http://somegec.appliserv.fr/api/signature?api="+Ti.App.Properties.getString('apikey')+"&id="+missionID,
-    height: 400,
+    height: 200,
     width: Ti.UI.FILL
   });
   if(suiviID == 2) view.add(web);
@@ -48,9 +48,9 @@ function suiviWindow(missionID, suiviID) {
     client.open("POST", url);    
     client.send({ 
       mission: missionID,
-      
       comment: comment.getValue(),  
-      });  
+      suivi: "2"
+    });  
   });
   view.add(button);
   
